@@ -1,0 +1,16 @@
+.cmobile-menu {
+  position: fixed;
+  width: 100%;
+  background: #1f2937;
+  top: -100%;
+}
+.loginLogout p {
+  color: #fff;
+  margin-left: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.loginLogout {
+  align-items: center;
+}

@@ -12,7 +12,6 @@ const ManageAllBookings = () => {
 
   //deleting a booking
   const handleBookingDelete = (id) => {
-    console.log(id);
     const confirmation = window.confirm("Are you sure to delete?");
     if (confirmation) {
       fetch(`https://creepy-cheateau-41595.herokuapp.com/users/${id}`, {
@@ -50,8 +49,6 @@ const ManageAllBookings = () => {
       .then((data) => {
         alert("approved");
       });
-
-    console.log(updatedData);
   };
   return (
     <>

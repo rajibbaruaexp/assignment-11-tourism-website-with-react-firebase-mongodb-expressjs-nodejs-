@@ -19,7 +19,6 @@ const MyBookings = () => {
       (booking) => booking.email === user.email
     );
     setFoundUser(searchResult);
-    // console.log(searchResult);
   }, [user.email, bookings]);
 
   //deleting a booking

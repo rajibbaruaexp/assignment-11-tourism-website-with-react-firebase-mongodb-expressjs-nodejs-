@@ -1,0 +1,26 @@
+.addnewservice form {
+  display: flex;
+  flex-direction: column;
+  width: 415px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0px 3px 0 #333;
+  margin-top: 50px;
+}
+
+.addnewservice form input,
+.addnewservice form textarea {
+  border: 1px solid #ddd;
+  height: 45px;
+  padding: 0 7px;
+  border-radius: 5px;
+  margin-bottom: 4px;
+}
+.addnewservice form textarea {
+  min-height: 120px;
+}
+.addnewservice form input[type="submit"] {
+  cursor: pointer;
+}

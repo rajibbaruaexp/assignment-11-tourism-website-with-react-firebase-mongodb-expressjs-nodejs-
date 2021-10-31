@@ -105,12 +105,44 @@ const Header = () => {
                     </NavLink>
 
                     <NavLink
-                      to="/contact-us"
+                      to="/contact"
                       className="text-black-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-regular"
                       activeClassName="bg-gray-900 text-white"
                     >
                       Contact Us
                     </NavLink>
+                    {user?.email ? (
+                      <>
+                        <NavLink
+                          to="/my-bookings"
+                          className="text-black-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-regular"
+                          activeClassName="bg-gray-900 text-white"
+                          onClick={toggle}
+                        >
+                          My Bookings
+                        </NavLink>
+
+                        <NavLink
+                          to="/manage-all-bookings"
+                          className="text-black-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-regular"
+                          activeClassName="bg-gray-900 text-white"
+                          onClick={toggle}
+                        >
+                          Manage All Bookings
+                        </NavLink>
+
+                        <NavLink
+                          to="/add-a-new-service"
+                          className="text-black-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-regular"
+                          activeClassName="bg-gray-900 text-white"
+                          onClick={toggle}
+                        >
+                          Add A New Service
+                        </NavLink>
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
               </div>
@@ -126,38 +158,6 @@ const Header = () => {
                         <button>Log in</button>
                       </Link>
                     )}
-                    {/* <Login></Login> */}
-                    {/* {user.email ? (
-                      <button
-                        onClick={logOut}
-                        type="button"
-                        className="loginLogout bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                        id="user-menu-button"
-                        aria-expanded="false"
-                        aria-haspopup="true"
-                      >
-                        <span className="sr-only">Open user menu</span>
-                        <p>
-                          <span className="font-light">
-                            {user?.displayName}
-                          </span>
-                          <span className="font-bold">(Log Out)</span>
-                        </p>
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        className="loginLogout bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                        id="user-menu-button"
-                        aria-expanded="false"
-                        aria-haspopup="true"
-                      >
-                        <span className="sr-only">Open user menu</span>
-                        <Link to="/register">
-                          <span className="text-white">Login</span>
-                        </Link>
-                      </button>
-                    )} */}
                   </div>
                 </div>
               </div>
@@ -186,13 +186,46 @@ const Header = () => {
             </NavLink>
 
             <NavLink
-              to="/contact-us"
+              to="/contact"
               className="text-black-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-regular"
               activeClassName="bg-gray-900 text-white"
               onClick={toggle}
             >
               Contact Us
             </NavLink>
+
+            {user?.email ? (
+              <>
+                <NavLink
+                  to="/my-bookings"
+                  className="text-black-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-regular"
+                  activeClassName="bg-gray-900 text-white"
+                  onClick={toggle}
+                >
+                  My Bookings
+                </NavLink>
+
+                <NavLink
+                  to="/manage-all-bookings"
+                  className="text-black-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-regular"
+                  activeClassName="bg-gray-900 text-white"
+                  onClick={toggle}
+                >
+                  Manage All Bookings
+                </NavLink>
+
+                <NavLink
+                  to="/add-a-new-service"
+                  className="text-black-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-regular"
+                  activeClassName="bg-gray-900 text-white"
+                  onClick={toggle}
+                >
+                  Add A New Service
+                </NavLink>
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </nav>

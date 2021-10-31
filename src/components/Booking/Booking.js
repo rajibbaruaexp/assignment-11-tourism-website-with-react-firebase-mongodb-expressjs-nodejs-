@@ -1,20 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
-import { useForm } from "react-hook-form";
 
 import "./Booking.css";
 import useAuth from "../../hooks/useAuth";
+// import axios from "axios";
 
 const Booking = () => {
-  const { register, handleSubmit } = useForm();
   const { user } = useAuth();
-
   let { id } = useParams();
   const [tours, setTours] = useState([]);
   const [tour, setTour] = useState({});
+
+  const tourPackageRef = useRef("");
+  const emailRef = useRef("");
+  const phoneRef = useRef("");
+  const addressRef = useRef("");
+  const statusRef = useRef("");
+
   //fetching data from server
   useEffect(() => {
-    fetch("http://localhost:5000/tours")
+    fetch("https://creepy-cheateau-41595.herokuapp.com/tours")
       .then((res) => res.json())
       .then((data) => setTours(data));
   }, []);
@@ -25,9 +30,35 @@ const Booking = () => {
     setTour(foundResult);
   }, [id, tours]);
 
-  //order place form with react hook form
-  const onSubmit = (data) => console.log(data);
+  const handleBookingFrom = (e) => {
+    e.preventDefault();
+    const tourPackage = tourPackageRef.current.value;
+    const email = emailRef.current.value;
+    const phone = phoneRef.current.value;
+    const address = addressRef.current.value;
+    const status = statusRef.current.value;
 
+    const newUser = { tourPackage, email, phone, address, status };
+
+    //send data to the server
+    fetch("https://creepy-cheateau-41595.herokuapp.com/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        tourPackageRef.current.value = "";
+        emailRef.current.value = "";
+        phoneRef.current.value = "";
+        addressRef.current.value = "";
+        if (data.insertedId) {
+          alert("Order is placed");
+        }
+      });
+  };
   return (
     <>
       <div
@@ -55,6 +86,11 @@ const Booking = () => {
                     {tour?.name}
                   </h5>
                   <p className="font-normal text-gray-700 p-1">
+                    <span className=""></span>
+                    {tour?.description}
+                  </p>
+
+                  <p className="font-normal text-gray-700 p-1">
                     <span className="font-bold">Price</span>: {tour?.price}
                   </p>
 
@@ -71,49 +107,43 @@ const Booking = () => {
             </div>
           </div>
           <div className="checkOut">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <label htmlFor="package" className="text-left">
-                Your selected package
-              </label>
+            <form onSubmit={handleBookingFrom}>
               <input
-                id="package"
+                required
+                readOnly
+                ref={tourPackageRef}
                 type="text"
-                placeholder="Package"
-                value={tour?.name}
-                {...register("package", { required: true, maxLength: 20 })}
+                placeholder="tourPackage"
+                defaultValue={tour?.name}
               />
 
-              <label htmlFor="name" className="text-left">
-                Your name
-              </label>
               <input
-                id="name"
-                type="text"
-                name="name"
-                value={user?.displayName}
-                placeholder="Your Name"
-                {...register("name", { required: true, maxLength: 20 })}
-              />
-
-              <label htmlFor="email" className="text-left">
-                Your email
-              </label>
-              <input
-                id="email"
+                required
+                readOnly
+                ref={emailRef}
                 type="email"
-                name="email"
-                value={user?.email}
-                placeholder="Your Email"
-                {...register("email", { required: true })}
+                placeholder="Your email"
+                defaultValue={user?.email}
               />
 
               <input
-                placeholder="Phone Number"
+                required
+                ref={phoneRef}
                 type="number"
-                {...register("phonenumber", { min: 18, max: 99 })}
+                placeholder="Phone Number"
+                defaultValue=""
               />
 
-              <input type="submit" value="Pay and book your seat" />
+              <input
+                required
+                ref={addressRef}
+                type="text"
+                placeholder="address"
+                defaultValue=""
+              />
+              <input type="hidden" value="pending" ref={statusRef} />
+
+              <input type="submit" value="Pay and Book Your Seat" />
             </form>
           </div>
         </div>

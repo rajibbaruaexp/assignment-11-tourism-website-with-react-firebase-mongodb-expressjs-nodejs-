@@ -30,7 +30,7 @@ const Login = () => {
         {/* google sign in   */}
         <div className="flex flex-col gap-4 px-0 py-4">
           <div className="my-2 flex flex-row justify-center">
-            <span className="absolute bg-white px-4">or</span>
+            <span className="absolute bg-white px-4">Please Log In</span>
             <div
               className="w-full bg-gray-200 mt-3"
               style={{ height: "1px" }}

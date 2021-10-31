@@ -12,6 +12,7 @@ import Header from "./components/shared/Header/Header";
 import Login from "./components/shared/Header/Login/Login";
 import PrivateRoute from "./components/shared/Header/Login/PrivateRoute";
 import AuthProvider from "./context/AuthProvider";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   return (
@@ -32,9 +33,8 @@ function App() {
               <About></About>
             </Route>
 
-            
             <Route exact path="/contact">
-            <Contact></Contact>
+              <Contact></Contact>
             </Route>
 
             <PrivateRoute exact path="/my-bookings">
@@ -55,6 +55,10 @@ function App() {
 
             <Route exact path="/login">
               <Login></Login>
+            </Route>
+
+            <Route exact path="*">
+              <NotFound></NotFound>
             </Route>
           </Switch>
           <Footer></Footer>

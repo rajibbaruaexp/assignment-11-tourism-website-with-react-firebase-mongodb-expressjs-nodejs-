@@ -7,7 +7,7 @@ She plans travel/tours for large or small groups and individuals
 
 ## Demo
 
-Link: https://digital-diagnostic-cente-4e974.web.app/
+Link: https://paradise-tours-and-travel.web.app/
 
 ## Acknowledgements
 
